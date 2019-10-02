@@ -16,10 +16,9 @@ class api {
         ]);
     }
 
+    public function get_launch_providers() : array {
 
-    public function get_launch_providers() : array{
-
-        $response = $this->client->request('GET', 'lsp'); //, ['query' => ['islsp' => 1]]);
+        $response = $this->client->request('GET', 'lsp');
 
         if ($response->getStatusCode() === 200) {
             $body = $response->getBody();
@@ -27,9 +26,31 @@ class api {
             $launch_providers = json_decode((string)$body);
         }
 
+        // TODO: make sure this doesnt fail when response is bad
         return $launch_providers->agencies;
     }
 
+    public function get_launches(string $agency) {
 
+        $response = $this->client->request('GET', 'launch', ['query' => ['lsp' => $agency, 'mode' => 'list']]);
+        if ($response->getStatusCode() !== 200) {
+            return [];
+        }
+
+        $body = $response->getBody();
+        $result = json_decode((string)$body);
+        $numresults = $result->total;
+
+        // Get the full list this time
+        $response = $this->client->request('GET', 'launch', ['query' => ['lsp' => $agency, 'limit' => $numresults]]);
+        if ($response->getStatusCode() !== 200) {
+            return [];
+        }
+
+        $body = $response->getBody();
+        $launches = json_decode((string)$body);
+
+        return $launches->launches;
+    }
 
 }

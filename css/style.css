@@ -1,0 +1,9 @@
+
+div#content {
+    width: 30%;
+}
+
+div#launches {
+    float: right;
+    width: 70%;
+}

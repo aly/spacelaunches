@@ -1,0 +1,26 @@
+<html>
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script src="js/main.js"></script>
+    <title>Launch info</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="header">
+        <h1>Launch providers</h1>
+    </div>
+    <div id="content">
+
+    <select id="launch-provider" onChange="changeEvent()">
+        {% for provider in providers %}
+            <option value="{{ provider.id }}">{{ provider.name }}</option>
+        {% endfor %}
+    </select>
+    </div>
+    <div id="launches">
+        {{ include('launches.html.twig') }}
+    </div>
+</body>
+</html>
