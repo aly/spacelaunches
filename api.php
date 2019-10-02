@@ -32,8 +32,12 @@ class api {
 
     public function get_launches(string $agency) {
 
-        $response = $this->client->request('GET', 'launch', ['query' => ['lsp' => $agency, 'mode' => 'list']]);
-        if ($response->getStatusCode() !== 200) {
+        try {
+            $response = $this->client->request('GET', 'launch', ['query' => ['lsp' => $agency, 'mode' => 'list']]);
+            if ($response->getStatusCode() !== 200) {
+                return [];
+            }
+        } catch (Exception $e) {
             return [];
         }
 
@@ -47,7 +51,7 @@ class api {
             if ($response->getStatusCode() !== 200) {
                 return [];
             }
-        } catch (Exception e) {
+        } catch (Exception $e) {
             return [];
         }
 
