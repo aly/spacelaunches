@@ -1,3 +1,7 @@
-{% for launch in launches %}
-    {{ include('launch.html.twig') }}
-{% endfor %}
+{% if launches|length > 0 %}
+    {% for launch in launches %}
+        {{ include('launch.html.twig') }}
+    {% endfor %}
+{% else %}
+    No results
+{% endif %}
