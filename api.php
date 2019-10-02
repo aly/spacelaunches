@@ -42,13 +42,18 @@ class api {
         $numresults = $result->total;
 
         // Get the full list this time
-        $response = $this->client->request('GET', 'launch', ['query' => ['lsp' => $agency, 'limit' => $numresults]]);
-        if ($response->getStatusCode() !== 200) {
+        try {
+            $response = $this->client->request('GET', 'launch', ['query' => ['lsp' => $agency, 'limit' => $numresults]]);
+            if ($response->getStatusCode() !== 200) {
+                return [];
+            }
+        } catch (Exception e) {
             return [];
         }
 
         $body = $response->getBody();
         $launches = json_decode((string)$body);
+
 
         return $launches->launches;
     }
