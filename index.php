@@ -26,4 +26,3 @@ $render_data = [
 
 echo $twig->render('index.html.twig', $render_data);
 
-

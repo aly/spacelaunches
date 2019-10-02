@@ -1,9 +1,16 @@
-
 div#content {
+    width: 100%;
+}
+
+div#chooser {
     width: 30%;
 }
 
 div#launches {
     float: right;
-    width: 70%;
+    width: 60%;
+}
+
+div.launch {
+    padding-bottom: 10px;
 }

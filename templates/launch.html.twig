@@ -1,10 +1,9 @@
 <div class="launch">
-
-<p>
 <strong>Rocket | Mission Name:</strong> {{ launch.name }} <br />
-<strong>Launch date:</strong: {{ launch.netdate }} <br />
-<strong>Outcome: </strong{{ launch.status }} <br />
-{{ launch.failurereason }}
-</p>
-
+<strong>Launch date:</strong> {{ launch.netdate }} <br />
+<strong>Outcome:</strong> {{ launch.status }} <br />
+{% set failreason = launch.failurereason %}
+{% if failreason is not empty %}
+    <strong>Failure reason:</strong> {{ failreason }}
+{% endif %}
 </div>
