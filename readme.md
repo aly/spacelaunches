@@ -8,6 +8,7 @@ Installation
 
 
 Example apache conf file:
+```
 <VirtualHost *:80>
 
 ServerAdmin webmaster@localhost
@@ -23,4 +24,4 @@ DocumentRoot /home/user/spacelaunches/htdocs
         Require all granted
     </Directory>
 </VirtualHost>
-
+```
